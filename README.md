@@ -26,11 +26,17 @@ yo civet-app
  
 ## Project Types
 
+* astro
+
 * bun
 
 * esbuild
 
 * farm
+
+* nextjs  
+  Unfortunately there is currently an issue with the CivetWebpackPlugin, that prevents the source maps from being mapped correctly to their Civet source files. That's why there is a patch inside the patches dir in the project folder that gets applied with a postinstall script. It's a workaround, but it unfortunately doesn't solve the whole issue for the server-side debugging case.
+  Also, depending on your security settings, you might need to run "npm run postinstall" to apply the patch, before debugging will work.
 
 * rolldown
 
@@ -52,6 +58,8 @@ yo civet-app
  - Create more robust test for dependencies
  - Check if vite debug configurations really need to be that complicated
  - add settings.json for templates with recommended extensions
+ - Maybe add an option for which package manager to use and adjust the scripts section accordingly
+ - Debugging in NextJS is not working right, Civet Webpack plugin writes flat filenames instead of full filepaths which causes problems when files have the same name in different folders
 
 
 [npm-image]: https://badge.fury.io/js/generator-civet-app.svg

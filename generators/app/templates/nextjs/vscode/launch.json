@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Civet: Next.js server",
+      "type": "pwa-node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/next",
+      "runtimeArgs": [
+        "dev",
+        "--webpack"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true,
+      "sourceMaps": true,
+      "pauseForSourceMap": true,
+      "smartStep": false,
+      "outFiles": [
+        "${workspaceFolder}/.next/dev/server/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "sourceMapPathOverrides": {
+        "webpack://cnext/./*": "${workspaceFolder}/*"
+      },
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/_virtual_*.civet.tsx"
+      ]
+    },
+    {
+      "name": "Civet: Next.js browser",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "preLaunchTask": "Next.js: dev server",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "sourceMapPathOverrides": {
+        "webpack://_N_E/./*": "${workspaceFolder}/*"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Next.js: dev server",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "nextjs",
+        "pattern": [
+          {
+            "regexp": "^(.*)$",
+            "message": 1
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^(> .+|[[:space:]]*▲ Next.js)",
+          "endsPattern": "(Ready in|Ready on|Local:)"
+        }
+      },
+      "presentation": {
+        "group": "nextjs",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Next.js: production build",
+      "type": "process",
+      "command": "${workspaceFolder}/node_modules/.bin/next",
+      "args": [
+        "build",
+        "--webpack"
+      ],
+      "problemMatcher": "$tsc"
+    }
+  ]
+}

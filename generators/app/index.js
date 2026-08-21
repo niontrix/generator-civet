@@ -127,6 +127,74 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
+  #scaffoldNextjsProject(appName) {
+    const tmplSourceDir = "nextjs";
+
+    this.fs.copyTpl(
+      this.templatePath(`${tmplSourceDir}/package.json.ejs`),
+      this.destinationPath("package.json"),
+      { appName }
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
+      this.destinationPath("tsconfig.json")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/README.md`),
+      this.destinationPath("README.md")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/gitignore`),
+      this.destinationPath(".gitignore")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/next.config.ts`),
+      this.destinationPath("next.config.ts")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/components`),
+      this.destinationPath("components")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/public`),
+      this.destinationPath("public")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/app`),
+      this.destinationPath("app")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/vscode`),
+      this.destinationPath(".vscode")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/patches`),
+      this.destinationPath("patches")
+    );
+
+    this.addDependencies({
+      next: "16.2.3",
+      react: "^19.0.0",
+      "react-dom": "^19.0.0"
+    });
+
+    this.addDevDependencies({
+      "@types/node": "^20",
+      "@types/react": "^19",
+      "@types/react-dom": "^19",
+      "patch-package": "^8.0.1",
+    });
+  }
+
   #scaffoldRolldownProject(appName) {
     const tmplSourceDir = "rolldown";
 
@@ -405,7 +473,7 @@ export default class CivetAppGenerator extends Generator {
         type: "list",
         name: "buildFramework",
         message: "What kind of base would you like to use?",
-        choices: ["astro+solid-js", "bun", "esbuild", "farm", "rolldown", "rollup", "vite", "vite-lib", "webpack"]
+        choices: ["astro+solid-js", "bun", "esbuild", "farm", "nextjs", "rolldown", "rollup", "vite", "vite-lib", "webpack"]
       }
     ];
 
@@ -435,6 +503,11 @@ export default class CivetAppGenerator extends Generator {
 
       case "farm": {
         this.#scaffoldFarmProject(appName);
+        break;
+      }
+
+      case "nextjs": {
+        this.#scaffoldNextjsProject(appName);
         break;
       }
 

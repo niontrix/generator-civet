@@ -213,3 +213,41 @@ describe("generator-civet-app:astro+solid-js", () => {
     expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("solid-js");
   });
 });
+
+describe("generator-civet-app:nextjs", () => {
+  beforeAll(() => helpers
+    .run(path.join(__dirname, "../generators/app"))
+    .withPrompts({ appName, buildFramework: "nextjs" }));
+
+  it("creates nextjs project files", () => {
+    expect(fs.existsSync(`${appName}/package.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/tsconfig.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/README.md`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.gitignore`)).toBe(true);
+    expect(fs.existsSync(`${appName}/next.config.ts`)).toBe(true);
+    expect(fs.existsSync(`${appName}/components/button.civet`)).toBe(true);
+    expect(fs.existsSync(`${appName}/public/file.svg`)).toBe(true);
+    expect(fs.existsSync(`${appName}/public/globe.svg`)).toBe(true);
+    expect(fs.existsSync(`${appName}/public/next.svg`)).toBe(true);
+    expect(fs.existsSync(`${appName}/public/vercel.svg`)).toBe(true);
+    expect(fs.existsSync(`${appName}/public/window.svg`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/page.tsx`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/layout.tsx`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/globals.css`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/page.module.css`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/favicon.ico`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app/about/page.civet`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.vscode/launch.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.vscode/tasks.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/patches/@danielx+civet+0.11.15.patch`)).toBe(true);
+  });
+
+  it("adds nextjs dependencies", () => {
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("next");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("react");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("react-dom");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@types/node");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@types/react");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@types/react-dom");
+  });
+});

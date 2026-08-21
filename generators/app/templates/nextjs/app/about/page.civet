@@ -1,0 +1,6 @@
+{ Button } from '../../components/button.civet'
+
+export default function About()
+  console.log "This is coming from Civet"
+  <h1>About
+  <Button>

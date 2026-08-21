@@ -1,0 +1,6 @@
+"use client"
+
+export function Button()
+  <button onClick={
+    => console.log "Clicked"}>
+    Click

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@danielx/civet/dist/unplugin/unplugin.js b/node_modules/@danielx/civet/dist/unplugin/unplugin.js
+index 1f658c7..d896c06 100644
+--- a/node_modules/@danielx/civet/dist/unplugin/unplugin.js
++++ b/node_modules/@danielx/civet/dist/unplugin/unplugin.js
+@@ -685,7 +685,7 @@ var rawPlugin = (options = {}, meta) => {
+           ...civetOptions,
+           ast: true
+         });
+-        const sourceMapSource = meta.framework === "esbuild" && pluginResolvedIds.has(filename) ? import_path.default.relative(outDir, filename) : import_path.default.basename(filename);
++        const sourceMapSource = meta.framework === "esbuild" && pluginResolvedIds.has(filename) ? import_path.default.relative(outDir, filename) : filename;
+         const civetSourceMap = new import_civet.SourceMap(
+           rawCivetSource,
+           normalizePath(sourceMapSource)
