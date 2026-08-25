@@ -273,6 +273,49 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
+  #scaffoldSolidStartProject(appName) {
+    const tmplSourceDir = "solid-start";
+
+    this.fs.copyTpl(
+      this.templatePath(`${tmplSourceDir}/package.json.ejs`),
+      this.destinationPath("package.json"),
+      { appName }
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/README.md`),
+      this.destinationPath("README.md")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/gitignore`),
+      this.destinationPath(".gitignore")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/app.config.ts`),
+      this.destinationPath("app.config.ts")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/src`),
+      this.destinationPath("src")
+    );
+
+    this.fs.copy(
+      this.templatePath(`${tmplSourceDir}/vscode`),
+      this.destinationPath(".vscode")
+    );
+
+    this.addDependencies({
+      "@solidjs/meta": "^0.29.4",
+      "@solidjs/router": "^0.15.3",
+      "@solidjs/start": "^1.3.2",
+      "solid-js": "^1.9.13",
+      vinxi: "^0.5.11"
+    });
+  }
+
   #scaffoldFarmProject(appName) {
     const tmplSourceDir = "farm";
 
@@ -473,7 +516,7 @@ export default class CivetAppGenerator extends Generator {
         type: "list",
         name: "buildFramework",
         message: "What kind of base would you like to use?",
-        choices: ["astro+solid-js", "bun", "esbuild", "farm", "nextjs", "rolldown", "rollup", "vite", "vite-lib", "webpack"]
+        choices: ["astro+solid-js", "bun", "esbuild", "farm", "nextjs", "rolldown", "rollup", "solid-start", "vite", "vite-lib", "webpack"]
       }
     ];
 
@@ -518,6 +561,11 @@ export default class CivetAppGenerator extends Generator {
 
       case "rollup": {
         this.#scaffoldRollupProject(appName);
+        break;
+      }
+
+      case "solid-start": {
+        this.#scaffoldSolidStartProject(appName);
         break;
       }
 

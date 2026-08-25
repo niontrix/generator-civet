@@ -1,0 +1,5 @@
+import { json } from "@solidjs/router"
+
+console.log "Calculating an answer..."
+
+export GET := => json { answer: 6 * 7 }

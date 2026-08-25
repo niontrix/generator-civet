@@ -59,7 +59,11 @@ yo civet-app
  - Check if vite debug configurations really need to be that complicated
  - add settings.json for templates with recommended extensions
  - Maybe add an option for which package manager to use and adjust the scripts section accordingly
- - Debugging in NextJS is not working right, Civet Webpack plugin writes flat filenames instead of full filepaths which causes problems when files have the same name in different folders
+ - ~~Debugging in NextJS is not working right, Civet Webpack plugin writes flat filenames instead of full filepaths which causes problems when files have the same name in different folders~~
+ - Go over all .gitignore files and maybe amend them
+ - Maybe replace .withPrompts with a non-deprecated function
+ - Check dependency version numbers
+ - Compare solid-start and vite debug configurations, as to why server process can't be stopped separately
 
 
 [npm-image]: https://badge.fury.io/js/generator-civet-app.svg

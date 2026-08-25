@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    //
+    // "node" launch configs (request: "launch", spawning node directly) were unreliable
+    // in this environment (silent no-op, no terminal, no error). Both configs below are
+    // built only from the two mechanisms that were verified to work: attaching to an
+    // already-running --inspect process, and a plain chrome launch.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Server: Attach (Civet dev)",
+            "port": 9229,
+            "restart": true,
+            "skipFiles": ["<node_internals>/**"],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "preLaunchTask": "civet: dev server (inspect)",
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Client: Chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            // the attach session doesn't reliably stay listed as its own stoppable entry, so also hook the kill task here
+            "postDebugTask": "civet: stop dev server (inspect)"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full Stack (Server + Client)",
+            "configurations": ["Server: Attach (Civet dev)", "Client: Chrome"],
+            "stopAll": false
+        }
+    ]
+}

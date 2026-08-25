@@ -251,3 +251,31 @@ describe("generator-civet-app:nextjs", () => {
     expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@types/react-dom");
   });
 });
+
+describe("generator-civet-app:solid-start", () => {
+  beforeAll(() => helpers
+    .run(path.join(__dirname, "../generators/app"))
+    .withPrompts({ appName, buildFramework: "solid-start" }));
+
+  it("creates solid-start project files", () => {
+    expect(fs.existsSync(`${appName}/package.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/README.md`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.gitignore`)).toBe(true);
+    expect(fs.existsSync(`${appName}/app.config.ts`)).toBe(true);
+    expect(fs.existsSync(`${appName}/src/app.tsx`)).toBe(true);
+    expect(fs.existsSync(`${appName}/src/entry-server.tsx`)).toBe(true);
+    expect(fs.existsSync(`${appName}/src/entry-client.tsx`)).toBe(true);
+    expect(fs.existsSync(`${appName}/src/routes/index.civet`)).toBe(true);
+    expect(fs.existsSync(`${appName}/src/routes/api/answer.civet`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.vscode/launch.json`)).toBe(true);
+    expect(fs.existsSync(`${appName}/.vscode/tasks.json`)).toBe(true);
+  });
+
+  it("adds solid-start dependencies", () => {
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@solidjs/meta");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@solidjs/router");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("@solidjs/start");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("solid-js");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("vinxi");
+  });
+});

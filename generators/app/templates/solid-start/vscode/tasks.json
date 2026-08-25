@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "civet: dev server (inspect)",
+      "type": "npm",
+      "script": "dev:inspect",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "vinxi starting dev server",
+          "endsPattern": "Debugger listening on|Local:\\s+https?://"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "civet: stop dev server (inspect)",
+      "type": "shell",
+      "command": "pkill -f 'node_modules/vinxi/bin/cli.mjs dev' || true",
+      "presentation": { "reveal": "silent", "panel": "dedicated" }
+    }
+  ]
+}
