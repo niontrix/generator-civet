@@ -3,9 +3,7 @@ import chalk from "chalk";
 import yosay from "yosay";
 
 export default class CivetAppGenerator extends Generator {
-  #scaffoldAstroProject(appName) {
-    const tmplSourceDir = "astro+solid-js";
-
+  #scaffoldAstroProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -49,9 +47,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldBunProject(appName) {
-    const tmplSourceDir = "bun";
-
+  #scaffoldBunProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -88,9 +84,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldEsbuildProject(appName) {
-    const tmplSourceDir = "esbuild";
-
+  #scaffoldEsbuildProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -127,9 +121,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldNextjsProject(appName) {
-    const tmplSourceDir = "nextjs";
-
+  #scaffoldNextjsProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -195,9 +187,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldRolldownProject(appName) {
-    const tmplSourceDir = "rolldown";
-
+  #scaffoldRolldownProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -234,9 +224,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldRollupProject(appName) {
-    const tmplSourceDir = "rollup";
-
+  #scaffoldRollupProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -273,9 +261,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldSolidStartProject(appName) {
-    const tmplSourceDir = "solid-start";
-
+  #scaffoldSolidStartProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -316,9 +302,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldFarmProject(appName) {
-    const tmplSourceDir = "farm";
-
+  #scaffoldFarmProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -366,9 +350,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldViteProject(appName) {
-    const tmplSourceDir = "vite";
-
+  #scaffoldViteProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -410,9 +392,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldViteLibProject(appName) {
-    const tmplSourceDir = "vite-lib";
-
+  #scaffoldViteLibProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -459,9 +439,7 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
-  #scaffoldWebpackProject(appName) {
-    const tmplSourceDir = "webpack";
-
+  #scaffoldWebpackProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
       this.destinationPath("package.json"),
@@ -530,57 +508,57 @@ export default class CivetAppGenerator extends Generator {
 
     switch (buildFramework) {
       case "astro+solid-js": {
-        this.#scaffoldAstroProject(appName);
+        this.#scaffoldAstroProject(appName, buildFramework);
         break;
       }
 
       case "bun": {
-        this.#scaffoldBunProject(appName);
+        this.#scaffoldBunProject(appName, buildFramework);
         break;
       }
 
       case "esbuild": {
-        this.#scaffoldEsbuildProject(appName);
+        this.#scaffoldEsbuildProject(appName, buildFramework);
         break;
       }
 
       case "farm": {
-        this.#scaffoldFarmProject(appName);
+        this.#scaffoldFarmProject(appName, buildFramework);
         break;
       }
 
       case "nextjs": {
-        this.#scaffoldNextjsProject(appName);
+        this.#scaffoldNextjsProject(appName, buildFramework);
         break;
       }
 
       case "rolldown": {
-        this.#scaffoldRolldownProject(appName);
+        this.#scaffoldRolldownProject(appName, buildFramework);
         break;
       }
 
       case "rollup": {
-        this.#scaffoldRollupProject(appName);
+        this.#scaffoldRollupProject(appName, buildFramework);
         break;
       }
 
       case "solid-start": {
-        this.#scaffoldSolidStartProject(appName);
+        this.#scaffoldSolidStartProject(appName, buildFramework);
         break;
       }
 
       case "vite": {
-        this.#scaffoldViteProject(appName);
+        this.#scaffoldViteProject(appName, buildFramework);
         break;
       }
 
       case "vite-lib": {
-        this.#scaffoldViteLibProject(appName);
+        this.#scaffoldViteLibProject(appName, buildFramework);
         break;
       }
 
       case "webpack": {
-        this.#scaffoldWebpackProject(appName);
+        this.#scaffoldWebpackProject(appName, buildFramework);
         break;
       }
 
