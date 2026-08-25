@@ -492,7 +492,7 @@ export default class CivetAppGenerator extends Generator {
       },
       {
         type: "list",
-        name: "buildFramework",
+        name: "template",
         message: "What kind of base would you like to use?",
         choices: ["astro+solid-js", "bun", "esbuild", "farm", "nextjs", "rolldown", "rollup", "solid-start", "vite", "vite-lib", "webpack"]
       }
@@ -504,66 +504,66 @@ export default class CivetAppGenerator extends Generator {
   }
 
   writing() {
-    const { appName, buildFramework } = this.answers;
+    const { appName, template } = this.answers;
 
-    switch (buildFramework) {
+    switch (template) {
       case "astro+solid-js": {
-        this.#scaffoldAstroProject(appName, buildFramework);
+        this.#scaffoldAstroProject(appName, template);
         break;
       }
 
       case "bun": {
-        this.#scaffoldBunProject(appName, buildFramework);
+        this.#scaffoldBunProject(appName, template);
         break;
       }
 
       case "esbuild": {
-        this.#scaffoldEsbuildProject(appName, buildFramework);
+        this.#scaffoldEsbuildProject(appName, template);
         break;
       }
 
       case "farm": {
-        this.#scaffoldFarmProject(appName, buildFramework);
+        this.#scaffoldFarmProject(appName, template);
         break;
       }
 
       case "nextjs": {
-        this.#scaffoldNextjsProject(appName, buildFramework);
+        this.#scaffoldNextjsProject(appName, template);
         break;
       }
 
       case "rolldown": {
-        this.#scaffoldRolldownProject(appName, buildFramework);
+        this.#scaffoldRolldownProject(appName, template);
         break;
       }
 
       case "rollup": {
-        this.#scaffoldRollupProject(appName, buildFramework);
+        this.#scaffoldRollupProject(appName, template);
         break;
       }
 
       case "solid-start": {
-        this.#scaffoldSolidStartProject(appName, buildFramework);
+        this.#scaffoldSolidStartProject(appName, template);
         break;
       }
 
       case "vite": {
-        this.#scaffoldViteProject(appName, buildFramework);
+        this.#scaffoldViteProject(appName, template);
         break;
       }
 
       case "vite-lib": {
-        this.#scaffoldViteLibProject(appName, buildFramework);
+        this.#scaffoldViteLibProject(appName, template);
         break;
       }
 
       case "webpack": {
-        this.#scaffoldWebpackProject(appName, buildFramework);
+        this.#scaffoldWebpackProject(appName, template);
         break;
       }
 
       default: {
-        this.log("You must select a framework");
+        this.log("You must select a template");
         break;
       }
     }

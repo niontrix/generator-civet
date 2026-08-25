@@ -14,7 +14,7 @@ const appName = "civet-test-app";
 describe("generator-civet-app:esbuild", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "esbuild" }));
+    .withPrompts({ appName, template: "esbuild" }));
 
   it("creates esbuild project files", () => {
     expect(fs.existsSync(`${appName}/esbuild.js`)).toBe(true);
@@ -35,7 +35,7 @@ describe("generator-civet-app:esbuild", () => {
 describe("generator-civet-app:farm", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "farm" }));
+    .withPrompts({ appName, template: "farm" }));
 
   it("creates farm project files", () => {
     expect(fs.existsSync(`${appName}/farm.config.js`)).toBe(true);
@@ -56,7 +56,7 @@ describe("generator-civet-app:farm", () => {
 describe("generator-civet-app:rollup", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "rollup" }));
+    .withPrompts({ appName, template: "rollup" }));
 
   it("creates rollup project files", () => {
     expect(fs.existsSync(`${appName}/rollup.config.js`)).toBe(true);
@@ -77,7 +77,7 @@ describe("generator-civet-app:rollup", () => {
 describe("generator-civet-app:rolldown", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "rolldown" }));
+    .withPrompts({ appName, template: "rolldown" }));
 
   it("creates rolldown project files", () => {
     expect(fs.existsSync(`${appName}/rolldown.config.js`)).toBe(true);
@@ -98,7 +98,7 @@ describe("generator-civet-app:rolldown", () => {
 describe("generator-civet-app:webpack", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "webpack" }));
+    .withPrompts({ appName, template: "webpack" }));
 
   it("creates webpack project files", () => {
     expect(fs.existsSync(`${appName}/webpack.config.js`)).toBe(true);
@@ -118,7 +118,7 @@ describe("generator-civet-app:webpack", () => {
 describe("generator-civet-app:vite", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "vite" }));
+    .withPrompts({ appName, template: "vite" }));
 
   it("creates vite project files", () => {
     expect(fs.existsSync(`${appName}/vite.config.js`)).toBe(true);
@@ -145,7 +145,7 @@ describe("generator-civet-app:vite", () => {
 describe("generator-civet-app:vite-lib", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "vite-lib" }));
+    .withPrompts({ appName, template: "vite-lib" }));
 
   it("creates vite-lib project files", () => {
     expect(fs.existsSync(`${appName}/vite.config.js`)).toBe(true);
@@ -172,7 +172,7 @@ describe("generator-civet-app:vite-lib", () => {
 describe("generator-civet-app:bun", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "bun" }));
+    .withPrompts({ appName, template: "bun" }));
 
   it("creates bun project files", () => {
     expect(fs.existsSync(`${appName}/bunfig.toml`)).toBe(true);
@@ -193,7 +193,7 @@ describe("generator-civet-app:bun", () => {
 describe("generator-civet-app:astro+solid-js", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "astro+solid-js" }));
+    .withPrompts({ appName, template: "astro+solid-js" }));
 
   it("creates astro+solid-js project files", () => {
     expect(fs.existsSync(`${appName}/package.json`)).toBe(true);
@@ -217,7 +217,7 @@ describe("generator-civet-app:astro+solid-js", () => {
 describe("generator-civet-app:nextjs", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "nextjs" }));
+    .withPrompts({ appName, template: "nextjs" }));
 
   it("creates nextjs project files", () => {
     expect(fs.existsSync(`${appName}/package.json`)).toBe(true);
@@ -255,7 +255,7 @@ describe("generator-civet-app:nextjs", () => {
 describe("generator-civet-app:solid-start", () => {
   beforeAll(() => helpers
     .run(path.join(__dirname, "../generators/app"))
-    .withPrompts({ appName, buildFramework: "solid-start" }));
+    .withPrompts({ appName, template: "solid-start" }));
 
   it("creates solid-start project files", () => {
     expect(fs.existsSync(`${appName}/package.json`)).toBe(true);
