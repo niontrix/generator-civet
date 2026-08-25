@@ -3,6 +3,21 @@ import chalk from "chalk";
 import yosay from "yosay";
 
 export default class CivetAppGenerator extends Generator {
+  /**
+   Copies files from the template to the destination
+   @param {string} tmplSourceDir - The source directory of the template
+   @param {Array} filesAndDirs - An array of pairs of files or directories and where to copy them
+                                { src: "somefile", dest: "/path/to/somefile" }
+   */
+  #copyFiles(tmplSourceDir, filesAndDirs) {
+    for (const { src, dest } of filesAndDirs) {
+      this.fs.copy(
+        this.templatePath(`${tmplSourceDir}/${src}`),
+        this.destinationPath(dest)
+      );
+    }
+  }
+
   #scaffoldAstroProject(appName, tmplSourceDir) {
     this.fs.copyTpl(
       this.templatePath(`${tmplSourceDir}/package.json.ejs`),
@@ -10,35 +25,16 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
+    const itemsToCopy = [
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "astro.config.mjs", dest: "astro.config.mjs" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "README.md", dest: "README.md" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/astro.config.mjs`),
-      this.destinationPath("astro.config.mjs")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/README.md`),
-      this.destinationPath("README.md")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDependencies({
       astro: "^7.2.0",
@@ -54,30 +50,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/bunfig.toml`),
-      this.destinationPath("bunfig.toml")
-    );
+    const itemsToCopy = [
+      { src: "bunfig.toml", dest: "bunfig.toml" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       "@types/bun": "latest"
@@ -91,30 +72,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/esbuild.js`),
-      this.destinationPath("esbuild.js")
-    );
+    const itemsToCopy = [
+      { src: "esbuild.js", dest: "esbuild.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       esbuild: "^0.27.0"
@@ -128,45 +94,19 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
+    const itemsToCopy = [
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "README.md", dest: "README.md" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "next.config.ts", dest: "next.config.ts" },
+      { src: "components", dest: "components" },
+      { src: "public", dest: "public" },
+      { src: "app", dest: "app" },
+      { src: "vscode", dest: ".vscode" },
+      { src: "patches", dest: "patches" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/README.md`),
-      this.destinationPath("README.md")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/next.config.ts`),
-      this.destinationPath("next.config.ts")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/components`),
-      this.destinationPath("components")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/public`),
-      this.destinationPath("public")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/app`),
-      this.destinationPath("app")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.fs.copy(
       this.templatePath(`${tmplSourceDir}/patches`),
@@ -194,30 +134,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/rolldown.config.js`),
-      this.destinationPath("rolldown.config.js")
-    );
+    const itemsToCopy = [
+      { src: "rolldown.config.js", dest: "rolldown.config.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       rolldown: "^1.2.0"
@@ -231,30 +156,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/rollup.config.js`),
-      this.destinationPath("rollup.config.js")
-    );
+    const itemsToCopy = [
+      { src: "rollup.config.js", dest: "rollup.config.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       rollup: "^4.62.0"
@@ -268,30 +178,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/README.md`),
-      this.destinationPath("README.md")
-    );
+    const itemsToCopy = [
+      { src: "README.md", dest: "README.md" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "app.config.ts", dest: "app.config.ts" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/app.config.ts`),
-      this.destinationPath("app.config.ts")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDependencies({
       "@solidjs/meta": "^0.29.4",
@@ -309,40 +204,17 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
+    const itemToCopy = [
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "farm.config.js", dest: "farm.config.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "index.html", dest: "index.html" },
+      { src: "public", dest: "public" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/farm.config.js`),
-      this.destinationPath("farm.config.js")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/index.html`),
-      this.destinationPath("index.html")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/public`),
-      this.destinationPath("public")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemToCopy);
 
     this.addDevDependencies({
       "@farmfe/cli": "^1.0.0",
@@ -357,35 +229,16 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vite.config.js`),
-      this.destinationPath("vite.config.js")
-    );
+    const itemsToCopy = [
+      { src: "vite.config.js", dest: "vite.config.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "index.html", dest: "index.html" },
+      { src: "src", dest: "src" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/index.html`),
-      this.destinationPath("index.html")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       vite: "^8.2.0"
@@ -399,40 +252,17 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vite.config.js`),
-      this.destinationPath("vite.config.js")
-    );
+    const itemsToCopy = [
+      { src: "vite.config.js", dest: "vite.config.js" },
+      { src: "tsconfig.json", dest: "tsconfig.json" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "index.html", dest: "index.html" },
+      { src: "src", dest: "src" },
+      { src: "scripts", dest: "scripts" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/tsconfig.json`),
-      this.destinationPath("tsconfig.json")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/index.html`),
-      this.destinationPath("index.html")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/src`),
-      this.destinationPath("src")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/scripts`),
-      this.destinationPath("scripts")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       vite: "^8.2.0"
@@ -446,30 +276,15 @@ export default class CivetAppGenerator extends Generator {
       { appName }
     );
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/webpack.config.js`),
-      this.destinationPath("webpack.config.js")
-    );
+    const itemsToCopy = [
+      { src: "webpack.config.js", dest: "webpack.config.js" },
+      { src: "gitignore", dest: ".gitignore" },
+      { src: "main.civet", dest: "main.civet" },
+      { src: "message.civet", dest: "message.civet" },
+      { src: "vscode", dest: ".vscode" }
+    ];
 
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/gitignore`),
-      this.destinationPath(".gitignore")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/main.civet`),
-      this.destinationPath("main.civet")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/message.civet`),
-      this.destinationPath("message.civet")
-    );
-
-    this.fs.copy(
-      this.templatePath(`${tmplSourceDir}/vscode`),
-      this.destinationPath(".vscode")
-    );
+    this.#copyFiles(tmplSourceDir, itemsToCopy);
 
     this.addDevDependencies({
       webpack: "^5.109.0",
