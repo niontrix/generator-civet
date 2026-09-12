@@ -307,6 +307,19 @@ export default class CivetAppGenerator extends Generator {
     this.#copyFiles("eslint", itemsToCopy);
   }
 
+  #addGulp() {
+    this.addDevDependencies({
+      gulp: "^4.0.2",
+      "gulp-civet": "^0.0.1"
+    });
+
+    const itemsToCopy = [
+      { src: "gulpfile.js", dest: "gulpfile.js" }
+    ];
+
+    this.#copyFiles("gulp", itemsToCopy);
+  }
+
   async initializing() {
     this.log(yosay(`Welcome to the wonderful ${chalk.red("generator-civet-app")} generator!`));
   }
@@ -331,6 +344,12 @@ export default class CivetAppGenerator extends Generator {
         name: "eslint",
         message: "Do you want to use eslint?",
         default: true
+      },
+      {
+        type: "confirm",
+        name: "gulp",
+        message: "Do you want to use gulp?",
+        default: false
       }
     ];
 
@@ -412,6 +431,10 @@ export default class CivetAppGenerator extends Generator {
 
     if (this.answers.eslint) {
       this.#addEslint();
+    }
+
+    if (this.answers.gulp) {
+      this.#addGulp();
     }
   }
 }

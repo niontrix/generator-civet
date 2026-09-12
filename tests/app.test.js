@@ -295,3 +295,18 @@ describe("generator-civet-app:eslint", () => {
     expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("typescript-eslint");
   });
 });
+
+describe("generator-civet-app:gulp", () => {
+  beforeAll(() => helpers
+    .run(path.join(__dirname, "../generators/app"))
+    .withPrompts({ appName, template: "esbuild", gulp: true }));
+
+  it("adds gulp dev dependencies", () => {
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("gulp");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("gulp-civet");
+  });
+
+  it("adds gulp tasks", () => {
+    expect(fs.existsSync(`${appName}/gulpfile.js`)).toBe(true);
+  });
+});
