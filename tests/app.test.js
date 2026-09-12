@@ -279,3 +279,19 @@ describe("generator-civet-app:solid-start", () => {
     expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("vinxi");
   });
 });
+
+describe("generator-civet-app:eslint", () => {
+  beforeAll(() => helpers
+    .run(path.join(__dirname, "../generators/app"))
+    .withPrompts({ appName, template: "esbuild", eslint: true }));
+
+  it("adds eslint configuration to the project", () => {
+    expect(fs.existsSync(`${appName}/eslint.config.civet`)).toBe(true);
+  });
+
+  it("adds eslint dependencies", () => {
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("eslint");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("eslint-plugin-civet");
+    expect(fs.readFileSync(`${appName}/package.json`, "utf8")).toContain("typescript-eslint");
+  });
+});

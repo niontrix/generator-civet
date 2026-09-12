@@ -292,6 +292,21 @@ export default class CivetAppGenerator extends Generator {
     });
   }
 
+  #addEslint() {
+    this.addDevDependencies({
+      eslint: "^9.17.0",
+      "@eslint/js": "^9.39.5",
+      "eslint-plugin-civet": "^0.1.0",
+      "typescript-eslint": "^8.19.0"
+    });
+
+    const itemsToCopy = [
+      { src: "eslint.config.civet", dest: "eslint.config.civet" }
+    ];
+
+    this.#copyFiles("eslint", itemsToCopy);
+  }
+
   async initializing() {
     this.log(yosay(`Welcome to the wonderful ${chalk.red("generator-civet-app")} generator!`));
   }
@@ -310,6 +325,12 @@ export default class CivetAppGenerator extends Generator {
         name: "template",
         message: "What kind of base would you like to use?",
         choices: ["astro+solid-js", "bun", "esbuild", "farm", "nextjs", "rolldown", "rollup", "solid-start", "vite", "vite-lib", "webpack"]
+      },
+      {
+        type: "confirm",
+        name: "eslint",
+        message: "Do you want to use eslint?",
+        default: true
       }
     ];
 
@@ -388,5 +409,9 @@ export default class CivetAppGenerator extends Generator {
       "@danielx/civet": "^0.11.0",
       typescript: "<7.0.0"
     });
+
+    if (this.answers.eslint) {
+      this.#addEslint();
+    }
   }
 }
