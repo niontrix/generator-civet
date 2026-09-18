@@ -321,7 +321,7 @@ export default class CivetAppGenerator extends Generator {
   }
 
   async initializing() {
-    this.log(yosay(`Welcome to the wonderful ${chalk.red("generator-civet-app")} generator!`));
+    this.log(yosay(`Welcome to the wonderful ${chalk.red("generator-civet")} generator!`));
   }
 
   async prompting() {

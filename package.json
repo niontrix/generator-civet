@@ -1,9 +1,9 @@
 {
-  "name": "generator-civet-app",
+  "name": "generator-civet",
   "version": "0.6.0",
   "type": "module",
   "description": "A Yeoman generator to scaffold projects for the Civet language (https://civet.dev).",
-  "homepage": "github.com/niontrix/generator-civet-app",
+  "homepage": "github.com/niontrix/generator-civet",
   "author": {
     "name": "Tobias Heinlein",
     "email": "dev_th@mailbox.org",
@@ -59,7 +59,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/niontrix/generator-civet-app.git"
+    "url": "https://github.com/niontrix/generator-civet.git"
   },
   "license": "LGPL-3.0"
 }

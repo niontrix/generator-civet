@@ -1,13 +1,13 @@
-# generator-civet-app [![NPM version][npm-image]][npm-url] [![Build Status][github-badge]][github-url]
+# generator-civet [![NPM version][npm-image]][npm-url] [![Build Status][github-badge]][github-url]
 > A Yeoman generator to scaffold projects for Civet (https://civet.dev).
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-civet-app using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-civet using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-civet-app
+npm install -g generator-civet
 ```
 
 Then generate your new project:
@@ -65,7 +65,7 @@ yo civet-app
  - Compare solid-start and vite debug configurations, as to why server process can't be stopped separately
 
 
-[npm-image]: https://badge.fury.io/js/generator-civet-app.svg
-[npm-url]: https://npmjs.org/package/generator-civet-app
-[github-badge]: https://github.com/niontrix/generator-civet-app/actions/workflows/nodejs.yml/badge.svg?branch=master
-[github-url]: https://github.com/niontrix/generator-civet-app/actions/workflows/nodejs.yml
+[npm-image]: https://badge.fury.io/js/generator-civet.svg
+[npm-url]: https://npmjs.org/package/generator-civet
+[github-badge]: https://github.com/niontrix/generator-civet/actions/workflows/nodejs.yml/badge.svg?branch=master
+[github-url]: https://github.com/niontrix/generator-civet/actions/workflows/nodejs.yml
