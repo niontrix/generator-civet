@@ -8,8 +8,8 @@ export default defineConfig({
       fileName: 'main',
       formats: ['cjs', 'es'],
     },
+    sourcemap: true,
   },
-  sourcemap: true,
   plugins: [
     civetVitePlugin({
       // 'preserve' is used here, because otherwise debugging with source maps currently isn't working.
