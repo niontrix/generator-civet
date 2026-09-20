@@ -305,6 +305,19 @@ export default class CivetAppGenerator extends Generator {
     ];
 
     this.#copyFiles("eslint", itemsToCopy);
+
+    const packageJsonContent = this.packageJson;
+    const existingScripts = packageJsonContent.scripts || {};
+
+    const newPackageJson = this.packageJson.merge({
+      scripts: {
+        lint: "civetlint",
+        "lint:fix": "eslint --fix",
+        ...existingScripts
+      }
+    });
+
+    this.fs.writeJSON(this.destinationPath("package.json"), newPackageJson);
   }
 
   #addGulp() {

@@ -7,6 +7,10 @@ tsCivetPlugin from "eslint-plugin-civet/ts"
 console.log "Using eslint.config.civet"
 
 export default [
+  {
+    name: "dist/ignores",
+    ignore: ["dist/**"]
+  }
   //--- Simple version, TypeScript:
   ...tsCivetPlugin.configs.jsRecommended
   ...tsCivetPlugin.configs.recommended

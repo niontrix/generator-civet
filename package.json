@@ -7,7 +7,7 @@
   "author": {
     "name": "Tobias Heinlein",
     "email": "dev_th@mailbox.org",
-    "url": ""
+    "url": "https://github.com/niontrix/generator-civet"
   },
   "files": [
     "generators"
