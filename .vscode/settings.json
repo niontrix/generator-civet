@@ -4,5 +4,5 @@
   "bun.test.enable": false,
   "vitest.enable": true,
   "vitest.watchOnStartup": false,
-  "vitest.configSearchPatternExclude": "{**/node_modules/**,**/templates/**}"
+  "vitest.configSearchPatternExclude": "{**/node_modules/**,**/templates/**}",
 }
